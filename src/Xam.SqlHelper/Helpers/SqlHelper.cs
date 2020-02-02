@@ -60,7 +60,7 @@ namespace Xam.SqlHelper
             }
             catch (Exception ex)
             {
-                throw new ReplacementException(ex);
+                throw new OptimisationException(ex);
             }
         }
 
