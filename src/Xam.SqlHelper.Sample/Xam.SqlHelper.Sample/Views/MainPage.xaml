@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Xam.SqlHelper.Sample.ViewModels"
+             x:Class="Xam.SqlHelper.Sample.Views.MainPage">
+    <ContentPage.BindingContext>
+        <viewModels:MainPageViewModel/>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
+            <Label Text="SQLHelper Sample" />
+            <Editor Text="{Binding SqlStatement}" IsReadOnly="True"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

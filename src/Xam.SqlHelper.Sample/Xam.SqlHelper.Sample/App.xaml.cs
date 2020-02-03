@@ -1,4 +1,5 @@
 ﻿using System;
+using Xam.SqlHelper.Sample.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

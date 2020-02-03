@@ -43,7 +43,9 @@ namespace Xam.SqlHelper
 
             string sqlScript = sqlPath;
 
-            using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(sqlPath))
+            var assembly = Assembly.GetCallingAssembly();
+
+            using (Stream stream = assembly.GetManifestResourceStream(sqlPath))
             {
                 if (stream == null)
                 {

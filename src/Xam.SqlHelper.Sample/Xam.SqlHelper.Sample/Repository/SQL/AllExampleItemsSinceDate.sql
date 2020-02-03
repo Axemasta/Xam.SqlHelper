@@ -1,0 +1,1 @@
+SELECT * FROM [ExampleItem] ei WHERE ei.[CreatedDate] > ?
