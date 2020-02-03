@@ -9,12 +9,13 @@ namespace Xam.SqlHelper.Sample.Models
     {
         public int Id { get; set; }
 
-        [IncludeField]
+        
         public string Title { get; set; }
 
-        [IncludeField]
+        [ExcludeField]
         public DateTime CreatedDate { get; set; }
 
+        [ExcludeField]
         public int OtherItemId { get; set; }
     }
 }

@@ -37,7 +37,7 @@ namespace Xam.SqlHelper
         /// <param name="optimise"></param>
         /// <param name="tableAbbreviation"></param>
         /// <returns></returns>
-        public string LoadSql<T>(string scriptName, bool optimise = true, string tableAbbreviation = null, bool markedFieldsOnly = false)
+        public string LoadSql<T>(string scriptName, bool optimise = true, string tableAbbreviation = null, bool includeFieldsOnly = true)
         {
             var sqlPath = $"{_assemblyName}.{scriptName}";
 
@@ -60,7 +60,7 @@ namespace Xam.SqlHelper
 
             if (optimise)
             {
-                return SqlHelper.ReplaceStar<T>(sqlScript, tableAbbreviation, markedFieldsOnly);
+                return SqlHelper.ReplaceStar<T>(sqlScript, tableAbbreviation, includeFieldsOnly);
             }
             else
             {

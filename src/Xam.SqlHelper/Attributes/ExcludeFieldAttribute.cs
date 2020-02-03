@@ -5,9 +5,9 @@ using System.Text;
 namespace Xam.SqlHelper.Attributes
 {
     /// <summary>
-    /// Include Field Attribute. Apply this to class property to pull back in a 
+    /// Exclude Field Attribute. Apply this to not have field pulled back when returning marked fields only
     /// </summary>
-    public class IncludeFieldAttribute : Attribute
+    public class ExcludeFieldAttribute : Attribute
     {
     }
 }

@@ -16,7 +16,7 @@ namespace Xam.SqlHelper.Tests
         {
             var sql = "SELECT * FROM [ExampleItem] ei";
 
-            var replaced = SqlHelper.ReplaceStar<ExampleItem>(sql);
+            var replaced = SqlHelper.ReplaceStar<ExampleItem>(sql, null, false);
 
             Assert.IsNotEmpty(replaced);
 
@@ -30,7 +30,7 @@ namespace Xam.SqlHelper.Tests
         {
             var sql = "SELECT * FROM [ExampleItem] ei";
 
-            var replaced = SqlHelper.ReplaceStar<ExampleItem>(sql, "ei");
+            var replaced = SqlHelper.ReplaceStar<ExampleItem>(sql, "ei", false);
 
             Assert.IsNotEmpty(replaced);
 
@@ -44,11 +44,11 @@ namespace Xam.SqlHelper.Tests
         {
             var sql = "SELECT * FROM [ExampleItem] ei";
 
-            var replaced = SqlHelper.ReplaceStar<ExampleItem>(sql, null, true);
+            var replaced = SqlHelper.ReplaceStar<ExampleItem>(sql);
 
             Assert.IsNotEmpty(replaced);
 
-            string replacedSql = "SELECT [Title], [CreatedDate] FROM [ExampleItem] ei";
+            string replacedSql = "SELECT [Id], [Title] FROM [ExampleItem] ei";
 
             Assert.AreEqual(replaced, replacedSql);
         }
@@ -58,41 +58,13 @@ namespace Xam.SqlHelper.Tests
         {
             var sql = "SELECT * FROM [ExampleItem] ei";
 
-            var replaced = SqlHelper.ReplaceStar<ExampleItem>(sql, "ei", true);
+            var replaced = SqlHelper.ReplaceStar<ExampleItem>(sql, "ei");
 
             Assert.IsNotEmpty(replaced);
 
-            string replacedSql = "SELECT ei.[Title], ei.[CreatedDate] FROM [ExampleItem] ei";
+            string replacedSql = "SELECT ei.[Id], ei.[Title] FROM [ExampleItem] ei";
 
             Assert.AreEqual(replaced, replacedSql);
         }
-
-        //[Test]
-        //public void ReplaceStarFields_NoTableSpecified()
-        //{
-        //    var sql = "SELECT * FROM [tracks] tr";
-
-        //    var replaced = SqlHelper.ReplaceStar(sql, null, nameof(Track.TrackId), nameof(Track.Name), nameof(Track.Megabytes));
-
-        //    Assert.IsNotEmpty(replaced);
-
-        //    string replacedSql = "SELECT [TrackId], [Name], [Megabytes] FROM [tracks] tr";
-
-        //    Assert.AreEqual(replaced, replacedSql);
-        //}
-
-        //[Test]
-        //public void ReplaceStarFields_TableSpecified()
-        //{
-        //    var sql = "SELECT * FROM [tracks] tr";
-
-        //    var replaced = SqlHelper.ReplaceStar(sql, "tr", nameof(Track.TrackId), nameof(Track.Name), nameof(Track.Megabytes));
-
-        //    Assert.IsNotEmpty(replaced);
-
-        //    string replacedSql = "SELECT tr.[TrackId], tr.[Name], tr.[Megabytes] FROM [tracks] tr";
-
-        //    Assert.AreEqual(replaced, replacedSql);
-        //}
     }
 }

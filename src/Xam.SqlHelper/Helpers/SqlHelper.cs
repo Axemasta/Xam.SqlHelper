@@ -20,10 +20,10 @@ namespace Xam.SqlHelper
         /// Replace * In SQL Statement With Object Properties
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="sql"></param>
-        /// <param name="tableAbbreviation"></param>
+        /// <param name="sql">The sql you wish to replace * with schema</param>
+        /// <param name="tableAbbreviation">The table abbreviation to prefix each field. ie 'ei' -> 'ei.[Field]'</param>
         /// <returns></returns>
-        public static string ReplaceStar<T>(string sql, string tableAbbreviation = null, bool markedFieldsOnly = false)
+        public static string ReplaceStar<T>(string sql, string tableAbbreviation = null, bool includedFieldsOnly = true)
         {
             try
             {
@@ -33,9 +33,9 @@ namespace Xam.SqlHelper
 
                 PropertyInfo[] properties;
 
-                if (markedFieldsOnly)
+                if (includedFieldsOnly)
                 {
-                    properties = type.GetProperties().Where(p => Attribute.IsDefined(p, typeof(IncludeFieldAttribute))).ToArray();
+                    properties = type.GetProperties().Where(p => !Attribute.IsDefined(p, typeof(ExcludeFieldAttribute))).ToArray();
                 }
                 else
                 {
