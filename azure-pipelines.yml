@@ -1,0 +1,34 @@
+trigger:
+- master
+- azure-pipelines
+
+pool:
+  vmImage: 'windows-latest'
+
+steps:
+- task: NuGetCommand@2
+  inputs:
+    command: 'restore'
+    restoreSolution: '**/*.sln'
+    feedsToUse: 'select'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: '**/*.csproj'
+
+- task: NuGetCommand@2
+  inputs:
+    command: 'pack'
+    packagesToPack: '**/*.csproj'
+    versioningScheme: 'byPrereleaseNumber'
+    majorVersion: '0'
+    minorVersion: '0'
+    patchVersion: '0'
+
+- task: NuGetCommand@2
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: '39fa5623-ce15-4ed9-a2ef-637ad0b5ca00'
