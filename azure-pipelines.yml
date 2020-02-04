@@ -2,6 +2,8 @@ trigger:
 - master
 - azure-pipelines
 
+buildConfiguration: 'Release'
+
 pool:
   vmImage: 'windows-latest'
 
@@ -16,11 +18,12 @@ steps:
   inputs:
     command: 'build'
     projects: '**/*.csproj'
+    arguments: '--configuration Release'
 
 - task: NuGetCommand@2
   inputs:
     command: 'pack'
-    packagesToPack: '**/*.csproj'
+    packagesToPack: '**/*.csproj;'
     versioningScheme: 'byPrereleaseNumber'
     majorVersion: '0'
     minorVersion: '0'
