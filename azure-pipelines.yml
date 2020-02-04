@@ -11,6 +11,7 @@ steps:
     command: 'restore'
     restoreSolution: '**/*.sln'
     feedsToUse: 'select'
+    arguments: '--configuration Release'
 
 - task: DotNetCoreCLI@2
   inputs:
