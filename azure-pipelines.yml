@@ -2,8 +2,6 @@ trigger:
 - master
 - azure-pipelines
 
-buildConfiguration: 'Release'
-
 pool:
   vmImage: 'windows-latest'
 
