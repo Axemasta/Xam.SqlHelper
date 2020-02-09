@@ -7,6 +7,7 @@ pool:
 
 steps:
 - task: NuGetCommand@2
+  displayName: Restore NuGet Packages
   inputs:
     command: 'restore'
     restoreSolution: '**/*.sln'
@@ -14,21 +15,24 @@ steps:
     arguments: '--configuration Release'
 
 - task: DotNetCoreCLI@2
+  displayName: Build Code
   inputs:
     command: 'build'
     projects: '**/*.csproj'
     arguments: '--configuration Release'
 
 - task: NuGetCommand@2
+displayName: Package NuGet
   inputs:
     command: 'pack'
-    packagesToPack: '**/*.csproj;'
+    packagesToPack: '**/Xam.SqlHelper.csproj;'
     versioningScheme: 'byPrereleaseNumber'
     majorVersion: '0'
     minorVersion: '0'
     patchVersion: '0'
 
 - task: NuGetCommand@2
+displayName: Push NuGet Packages To Private Feed
   inputs:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
