@@ -6,6 +6,12 @@ pool:
   vmImage: 'windows-latest'
 
 steps:
+
+- task: NuGetToolInstaller@1
+  displayName: Specify NuGet Version
+  inputs:
+    versionSpec: '4.7.1'
+
 - task: NuGetCommand@2
   displayName: Restore NuGet Packages
   inputs:
