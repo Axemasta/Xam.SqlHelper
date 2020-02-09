@@ -24,7 +24,7 @@ steps:
   displayName: Build Code
   inputs:
     command: 'build'
-    projects: '**/*.csproj'
+    projects: '**/Xam.SqlHelper.csproj'
     arguments: '--configuration Release'
 
 - task: NuGetCommand@2
