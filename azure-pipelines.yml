@@ -22,7 +22,7 @@ steps:
     arguments: '--configuration Release'
 
 - task: NuGetCommand@2
-displayName: Package NuGet
+  displayName: Package NuGet
   inputs:
     command: 'pack'
     packagesToPack: '**/Xam.SqlHelper.csproj;'
@@ -32,7 +32,7 @@ displayName: Package NuGet
     patchVersion: '0'
 
 - task: NuGetCommand@2
-displayName: Push NuGet Packages To Private Feed
+  displayName: Push NuGet Packages To Private Feed
   inputs:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
