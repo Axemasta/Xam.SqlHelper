@@ -5,6 +5,9 @@ trigger:
 pool:
   vmImage: 'windows-latest'
 
+variables:
+  buildConfiguration: 'Release'
+
 steps:
 
 - task: NuGetToolInstaller@1
@@ -18,14 +21,14 @@ steps:
     command: 'restore'
     restoreSolution: '**/*.sln'
     feedsToUse: 'select'
-    arguments: '--configuration Release'
+    arguments: '--configuration $(buildConfiguration)'
 
 - task: DotNetCoreCLI@2
   displayName: Build Code
   inputs:
     command: 'build'
     projects: '**/Xam.SqlHelper.csproj'
-    arguments: '--configuration Release'
+    arguments: '--configuration $(buildConfiguration)'
 
 - task: NuGetCommand@2
   displayName: Package NuGet
